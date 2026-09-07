@@ -10,9 +10,9 @@ Frankenstyle component: `local_talentlms_bridge`.
 ## What it does
 
 - **Site administration > Plugins > Local plugins > TalentLMS bridge**
-  ("Export users to TalentLMS (Excel)") downloads every Moodle user as an
-  `.xlsx` file, ready to upload in TalentLMS's own Account & Settings >
-  Import-Export screen.
+  ("Export users to TalentLMS (Excel)") downloads a single `.xlsx` file with
+  one row per Moodle user, ready to upload in TalentLMS's own Account &
+  Settings > Import-Export screen.
 - Each user's TalentLMS **User-type** (SuperAdmin / Admin-Type / Trainer-Type
   / Learner-Type) is set automatically from their highest Moodle role.
 - Any custom user profile fields defined on your site are included as
