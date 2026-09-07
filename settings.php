@@ -24,9 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-// local/talentlms_bridge:managesync is granted to the manager archetype, not
-// just full site:config admins, and admin_externalpage checks its own
-// capability — so these stay visible to managers who lack site:config.
+// The local/talentlms_bridge:managesync capability is granted to the manager
+// archetype, not just full site:config admins, and admin_externalpage checks
+// its own capability — so these stay visible to managers who lack site:config.
 $ADMIN->add('localplugins', new admin_externalpage(
     'local_talentlms_bridge_export',
     get_string('exportusers', 'local_talentlms_bridge'),
