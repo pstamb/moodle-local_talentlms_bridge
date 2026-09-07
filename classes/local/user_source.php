@@ -27,7 +27,6 @@ namespace local_talentlms_bridge\local;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class user_source {
-
     /**
      * Fetch the next batch of real, non-deleted Moodle users to consider for export.
      *

@@ -71,7 +71,6 @@ namespace local_talentlms_bridge\local;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class users_csv_exporter {
-
     /** @var string Fixed export filename, overwritten on every run. */
     const FILENAME = 'moodle_users_export.csv';
 
@@ -85,7 +84,9 @@ class users_csv_exporter {
     const MAX_ROWS_PER_FILE = 250;
 
     /** @var string[] Fixed columns, before any custom_field:<name> columns. */
-    const BASE_HEADER = ['Login', 'Firstname', 'Lastname', 'Email', 'User-type', 'Active', 'Branch', 'Group', 'Exclude-from-emails'];
+    const BASE_HEADER = [
+        'Login', 'Firstname', 'Lastname', 'Email', 'User-type', 'Active', 'Branch', 'Group', 'Exclude-from-emails',
+    ];
 
     /** @var \stdClass[]|null Every custom field defined on this site, lazily loaded once. */
     private ?array $allcustomfields = null;
@@ -173,7 +174,7 @@ class users_csv_exporter {
      * Write the full export for a set of users to $directory, atomically.
      *
      * @param string $directory Must already exist and be writable.
-     * @param iterable<\stdClass> $users
+     * @param iterable $users
      * @return string Full path of the written file.
      */
     public function write(string $directory, iterable $users): string {
@@ -214,7 +215,7 @@ class users_csv_exporter {
      * left over from a previous run in a different mode.
      *
      * @param string $directory Must already exist and be writable.
-     * @param iterable<\stdClass> $users
+     * @param iterable $users
      * @param int $maxrowsperfile
      * @return string[] Full paths of the written files, in order.
      */
@@ -262,6 +263,8 @@ class users_csv_exporter {
     }
 
     /**
+     * Builds the filename for one numbered part of a split export.
+     *
      * @param int $index 1-based part number.
      * @return string
      */
@@ -285,6 +288,8 @@ class users_csv_exporter {
     }
 
     /**
+     * Lazily loads and caches the site's TalentLMS login overrides.
+     *
      * @return array<int, string> Moodle userid => TalentLMS login override,
      *         for users whose Moodle username doesn't match their existing
      *         TalentLMS login (see user_mapping and login_overrides.php).
@@ -297,6 +302,8 @@ class users_csv_exporter {
     }
 
     /**
+     * Lazily loads and caches the definitions, then applies any narrowing.
+     *
      * @return \stdClass[] Custom profile field definitions to actually export — all of them,
      *         unless set_included_custom_field_ids() narrowed that down.
      */

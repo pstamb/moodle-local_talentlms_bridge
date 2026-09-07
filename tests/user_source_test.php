@@ -28,8 +28,8 @@ use local_talentlms_bridge\local\user_source;
  * @copyright  2026 plugindev sandbox
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(user_source::class)]
 final class user_source_test extends \advanced_testcase {
-
     public function test_count_matches_batch_exclusions(): void {
         global $DB;
         $this->resetAfterTest();

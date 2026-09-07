@@ -84,7 +84,10 @@ echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'save', 'val
 echo html_writer::tag(
     'textarea',
     s(user_mapping::format_overrides_as_text()),
-    ['name' => 'overrides', 'rows' => 12, 'cols' => 60, 'class' => 'form-control', 'style' => 'max-width: 640px; font-family: monospace;']
+    [
+        'name' => 'overrides', 'rows' => 12, 'cols' => 60, 'class' => 'form-control',
+        'style' => 'max-width: 640px; font-family: monospace;',
+    ]
 );
 echo html_writer::div(
     html_writer::tag('button', get_string('savechanges'), ['type' => 'submit', 'class' => 'btn btn-primary']),

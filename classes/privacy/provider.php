@@ -35,13 +35,14 @@ use core_privacy\local\request\writer;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements
-        \core_privacy\local\metadata\provider,
-        \core_privacy\local\request\core_userlist_provider,
-        \core_privacy\local\request\plugin\provider {
-
+    \core_privacy\local\metadata\provider,
+    \core_privacy\local\request\core_userlist_provider,
+    \core_privacy\local\request\plugin\provider {
     /**
-     * @param collection $collection
-     * @return collection
+     * Declares the fields local_talentlms_bridge_user stores and why.
+     *
+     * @param collection $collection The initialised collection to add items to.
+     * @return collection The collection with our items added.
      */
     public static function get_metadata(collection $collection): collection {
         $collection->add_database_table('local_talentlms_bridge_user', [
@@ -58,8 +59,10 @@ class provider implements
     }
 
     /**
-     * @param int $userid
-     * @return contextlist
+     * Gets the list of contexts that contain user information for the specified user.
+     *
+     * @param int $userid The user to search.
+     * @return contextlist The contextlist containing the list of contexts used in this plugin.
      */
     public static function get_contexts_for_userid(int $userid): contextlist {
         global $DB;
@@ -72,7 +75,9 @@ class provider implements
     }
 
     /**
-     * @param userlist $userlist
+     * Gets the list of users within a specific context.
+     *
+     * @param userlist $userlist The userlist containing the list of users who have data in this context/plugin combination.
      */
     public static function get_users_in_context(userlist $userlist): void {
         if (!$userlist->get_context() instanceof \context_system) {
@@ -83,7 +88,9 @@ class provider implements
     }
 
     /**
-     * @param approved_contextlist $contextlist
+     * Exports all user data for the specified user, in the specified contexts.
+     *
+     * @param approved_contextlist $contextlist The approved contexts to export information for.
      */
     public static function export_user_data(approved_contextlist $contextlist): void {
         global $DB;
@@ -115,7 +122,9 @@ class provider implements
     }
 
     /**
-     * @param \context $context
+     * Deletes all user data which matches the specified context.
+     *
+     * @param \context $context A context.
      */
     public static function delete_data_for_all_users_in_context(\context $context): void {
         global $DB;
@@ -127,7 +136,9 @@ class provider implements
     }
 
     /**
-     * @param approved_contextlist $contextlist
+     * Deletes all user data for the specified user, in the specified contexts.
+     *
+     * @param approved_contextlist $contextlist The approved contexts and user information to delete information for.
      */
     public static function delete_data_for_user(approved_contextlist $contextlist): void {
         $hassystemcontext = array_filter(
@@ -141,7 +152,9 @@ class provider implements
     }
 
     /**
-     * @param approved_userlist $userlist
+     * Deletes multiple users within a single context.
+     *
+     * @param approved_userlist $userlist The approved context and user information to delete information for.
      */
     public static function delete_data_for_users(approved_userlist $userlist): void {
         if (!$userlist->get_context() instanceof \context_system) {
@@ -151,6 +164,8 @@ class provider implements
     }
 
     /**
+     * Deletes the mapping rows for the given user ids.
+     *
      * @param int[] $userids
      */
     private static function delete_for_userids(array $userids): void {

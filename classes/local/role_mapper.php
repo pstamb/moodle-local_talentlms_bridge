@@ -41,7 +41,6 @@ namespace local_talentlms_bridge\local;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class role_mapper {
-
     /** @var string[] Role shortnames one tier below site admin. */
     const ADMIN_ROLE_SHORTNAMES = ['manager'];
 
@@ -95,7 +94,7 @@ final class role_mapper {
      * for a "what's in this export" summary table, not for the export
      * itself (which maps each row independently via to_row()).
      *
-     * @param iterable<\stdClass> $users Rows with an ->id, e.g. from user_source::iterate_all().
+     * @param iterable $users Rows with an ->id, e.g. from user_source::iterate_all().
      * @param \moodle_database|null $db Defaults to the global $DB.
      * @return array<string, int> Keyed by BULK_USER_TYPES, all four keys always present.
      */
@@ -108,6 +107,8 @@ final class role_mapper {
     }
 
     /**
+     * Classifies a user into the internal tier shared by map() and map_bulk_user_type().
+     *
      * @param int $userid
      * @param \moodle_database|null $db
      * @return string One of 'siteadmin', 'admin', 'instructor', 'learner'.
@@ -132,6 +133,8 @@ final class role_mapper {
     }
 
     /**
+     * Looks up every role shortname $userid holds, in any context.
+     *
      * @param int $userid
      * @param \moodle_database $db
      * @return string[] Distinct role shortnames assigned to this user in any context.

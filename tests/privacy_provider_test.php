@@ -33,8 +33,8 @@ use local_talentlms_bridge\privacy\provider;
  * @copyright  2026 plugindev sandbox
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(provider::class)]
 final class privacy_provider_test extends provider_testcase {
-
     public function test_get_contexts_for_userid_empty_when_no_mapping_row(): void {
         $this->resetAfterTest();
         $user = $this->getDataGenerator()->create_user();

@@ -42,9 +42,9 @@ require_once($CFG->libdir . '/adminlib.php');
 
 $download = optional_param('download', 0, PARAM_BOOL);
 
-// admin_externalpage_setup() already enforces the capability this page was
-// registered with (settings.php) via $extpage->check_access() — no separate
-// require_capability() needed since we're not gating a stricter sub-action.
+// Capability is already enforced by admin_externalpage_setup() via
+// $extpage->check_access(), against what this page was registered with
+// (settings.php) — no separate require_capability() needed here.
 admin_externalpage_setup('local_talentlms_bridge_export');
 
 $availablecustomfields = users_csv_exporter::available_custom_fields();
@@ -142,7 +142,7 @@ function local_talentlms_bridge_styles(): string {
  *
  * @param string $col1 First column header.
  * @param string $col2 Second column header.
- * @param array<int, array{0: string, 1: string|int}> $rows
+ * @param array $rows Rows of [value1, value2], one per html_table_row (or a plain array for a simple row).
  * @param string $cssclass Extra class appended to Moodle's default table classes.
  * @return \html_table
  */
@@ -160,7 +160,7 @@ function local_talentlms_bridge_simple_table(string $col1, string $col2, array $
 /**
  * Render the "what's in this export" User-type breakdown table.
  *
- * @param array<string, int> $typecounts As returned by role_mapper::tally_bulk_user_types().
+ * @param array $typecounts As returned by role_mapper::tally_bulk_user_types() (string type => int count).
  * @return string
  */
 function local_talentlms_bridge_typetable_html(array $typecounts): string {
@@ -265,7 +265,7 @@ function local_talentlms_bridge_download_control_html(array $customfields, int $
  *
  * @param string $basefilename Without extension.
  * @param users_csv_exporter $exporter
- * @param iterable<\stdClass> $users
+ * @param iterable $users
  */
 function local_talentlms_bridge_download_split_excel(string $basefilename, users_csv_exporter $exporter, iterable $users): void {
     global $CFG;

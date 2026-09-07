@@ -27,8 +27,8 @@ use local_talentlms_bridge\local\role_mapper;
  * @copyright  2026 plugindev sandbox
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(role_mapper::class)]
 final class role_mapper_test extends \advanced_testcase {
-
     public function test_plain_user_maps_to_learner(): void {
         $this->resetAfterTest();
         $user = $this->getDataGenerator()->create_user();

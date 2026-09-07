@@ -23,6 +23,8 @@
  */
 
 /**
+ * Runs the plugin's upgrade steps.
+ *
  * @param int $oldversion
  * @return bool always true
  */

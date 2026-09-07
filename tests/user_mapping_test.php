@@ -27,8 +27,8 @@ use local_talentlms_bridge\local\user_mapping;
  * @copyright  2026 plugindev sandbox
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(user_mapping::class)]
 final class user_mapping_test extends \advanced_testcase {
-
     public function test_get_or_create_creates_a_blank_row_once(): void {
         global $DB;
         $this->resetAfterTest();
